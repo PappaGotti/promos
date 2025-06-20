@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mobile Accessories Product Lineup</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.4;
+            color: #333;
+            background: #fff;
+            width: 8.5in;
+            height: 11in;
+            margin: 0 auto;
+            padding: 0.5in;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 20px;
+            border-bottom: 3px solid #e74c3c;
+            padding-bottom: 15px;
+        }
+        
+        .header h1 {
+            color: #2c3e50;
+            font-size: 26px;
+            margin-bottom: 8px;
+            font-weight: 700;
+        }
+        
+        .header .subtitle {
+            color: #7f8c8d;
+            font-size: 14px;
+            font-weight: 500;
+        }
+        
+        .highlight-box {
+            background: linear-gradient(135deg, #e74c3c, #c0392b);
+            color: white;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .highlight-box h2 {
+            font-size: 16px;
+            margin-bottom: 8px;
+        }
+        
+        .highlight-box p {
+            font-size: 12px;
+            line-height: 1.4;
+        }
+        
+        .products-list {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        
+        .product-item {
+            border: 2px solid #ecf0f1;
+            border-radius: 8px;
+            padding: 12px;
+            background: #fff;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .product-item:hover {
+            border-color: #e74c3c;
+            box-shadow: 0 4px 12px rgba(231, 76, 60, 0.15);
+            transform: translateY(-2px);
+        }
+        
+        .product-link {
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+        
+        .product-content {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            min-height: 120px;
+        }
+        
+        .product-row {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+        }
+        
+        .product-title {
+            text-align: center;
+            margin-bottom: 10px;
+        }
+        
+        .product-title h2 {
+            color: #2c3e50;
+            font-size: 16px;
+            font-weight: 600;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        
+        .product-left {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-width: 120px;
+            max-width: 120px;
+        }
+        
+        .product-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 8px;
+            height: 30px;
+            text-align: center;
+        }
+        
+        .brand-tag {
+            background: #e74c3c;
+            color: white;
+            padding: 3px 6px;
+            border-radius: 4px;
+            font-size: 10px;
+            font-weight: 600;
+            margin-right: 8px;
+        }
+        
+        .product-name {
+            font-size: 14px;
+            font-weight: 600;
+            color: #2c3e50;
+            text-align: center;
+        }
+        
+        .product-image {
+            width: 100px;
+            height: 80px;
+            object-fit: contain;
+            border-radius: 6px;
+            background: #f8f9fa;
+            margin-top: 8px;
+        }
+        
+        .product-details {
+            flex-grow: 1;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+        
+        .features {
+            flex-grow: 1;
+        }
+        
+        .features h4 {
+            color: #2c3e50;
+            font-size: 12px;
+            margin-bottom: 6px;
+            font-weight: 600;
+        }
+        
+        .features ul {
+            list-style: none;
+            padding-left: 0;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3px;
+        }
+        
+        .features li {
+            font-size: 10px;
+            padding-left: 12px;
+            position: relative;
+            color: #555;
+            line-height: 1.3;
+        }
+        
+        .features li:before {
+            content: "▶";
+            color: #e74c3c;
+            position: absolute;
+            left: 0;
+            font-size: 8px;
+            top: 1px;
+        }
+        
+        .product-right {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            justify-content: center;
+            min-width: 100px;
+            gap: 36px;
+        }
+        
+        .price {
+            background: #8e44ad;
+            color: white;
+            padding: 8px 12px;
+            border-radius: 20px;
+            font-weight: 700;
+            font-size: 16px;
+        }
+        
+        .warranty {
+            background: #27ae60;
+            color: white;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 10px;
+            font-weight: 600;
+            text-align: center;
+        }
+        
+        .branding {
+            text-align: center;
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 2px solid #ecf0f1;
+        }
+        
+        .branding h2 {
+            color: #2c3e50;
+            font-size: 24px;
+            font-weight: 700;
+            margin: 0;
+        }
+        
+        @media print {
+            body {
+                margin: 0;
+                padding: 0.5in;
+                width: 100%;
+                height: 100vh;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Mobile Accessories Product Lineup</h1>
+        <div class="subtitle">High-Performance Products for Today's Market</div>
+    </div>
+    
+    <div class="highlight-box">
+        <h2>🚀 Market Opportunity Spotlight</h2>
+        <p>The <strong>Zizo Sonic Clip Speaker</strong> is performing incredibly well in the Cricket channel, and we expect strong performance in Metro. Waterproof, high-quality sound, and versatile clip design make it a standout product for active customers.</p>
+    </div>
+    
+    <div class="products-list">
+        <div class="product-item">
+            <a href="https://metro.b2b.scp4me.com/index.php/zizo-sonic-clip-ultra-portable-wearable-speaker-black.html" target="_blank" class="product-link">
+                <div class="product-content">
+                    <div class="product-title">
+                        <h2><div class="brand-tag">Zizo</div>Sonic Clip Ultra-Portable Speaker</h2>
+                    </div>
+                    <div class="product-row">
+                        <div class="product-left">
+                            <img src="80501VRP_product.jpg" alt="Zizo Sonic Clip Speaker - Black" class="product-image">
+                        </div>
+                        <div class="product-details">
+                            <div class="features">
+                                <h4>Key Features:</h4>
+                                <ul>
+                                    <li>IPX7 waterproof rating - 1 meter for 30 minutes</li>
+                                    <li>Clips easily to bags, belts, or handlebars</li>
+                                    <li>Up to 3+ hours continuous playtime</li>
+                                    <li>Perfect for outdoor adventures & daily listening</li>
+                                    <li>Available in Black & Pink</li>
+                                    <li>Compact and clip-on design</li>
+                                </ul>
+                            </div>
+                            <div class="product-right">
+                                <div class="price">$12.45</div>
+                                <div class="warranty">Zizo 1-Year Warranty</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        <div class="product-item">
+            <a href="https://metro.b2b.scp4me.com/index.php/zizo-sonic-clip-ultra-portable-wearable-speaker-pink.html" target="_blank" class="product-link">
+                <div class="product-content">
+                    <div class="product-title">
+                        <h2><div class="brand-tag">Zizo</div>Sonic Clip Ultra-Portable Speaker (Pink)</h2>
+                    </div>
+                    <div class="product-row">
+                        <div class="product-left">
+                            <img src="spk-sccl_media-pink-1_1.jpg" alt="Zizo Sonic Clip Speaker - Pink" class="product-image">
+                        </div>
+                        <div class="product-details">
+                            <div class="features">
+                                <h4>Key Features:</h4>
+                                <ul>
+                                    <li>IPX7 waterproof rating - 1 meter for 30 minutes</li>
+                                    <li>Clips easily to bags, belts, or handlebars</li>
+                                    <li>Up to 3+ hours continuous playtime</li>
+                                    <li>Perfect for outdoor adventures & daily listening</li>
+                                    <li>Stylish pink color option</li>
+                                    <li>Compact and clip-on design</li>
+                                </ul>
+                            </div>
+                            <div class="product-right">
+                                <div class="price">$12.45</div>
+                                <div class="warranty">Zizo 1-Year Warranty</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        <div class="product-item">
+            <a href="https://metro.b2b.scp4me.com/index.php/zizo-vessel-magsafe-wallet-black.html" target="_blank" class="product-link">
+                <div class="product-content">
+                    <div class="product-title">
+                        <h2><div class="brand-tag">Zizo</div>Vessel MagSafe Wallet</h2>
+                    </div>
+                    <div class="product-row">
+                        <div class="product-left">
+                            <img src="80522VRP_product_A_1.jpg" alt="Zizo MagSafe Wallet" class="product-image">
+                        </div>
+                        <div class="product-details">
+                            <div class="features">
+                                <h4>Key Features:</h4>
+                                <ul>
+                                    <li>Easy access to cards</li>
+                                    <li>Magnetic adhesion to compatible phones/cases</li>
+                                    <li>Built-in kickstand for hands-free viewing</li>
+                                    <li>Holds up to two cards</li>
+                                    <li>Sleek black design</li>
+                                    <li>Hands-free viewing with kickstand</li>
+                                </ul>
+                            </div>
+                            <div class="product-right">
+                                <div class="price">$4.30</div>
+                                <div class="warranty">Zizo Lifetime Warranty</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        <div class="product-item">
+            <a href="https://metro.b2b.scp4me.com/index.php/hd-glass-camera-protector-1-pk-black-aluminum.html" target="_blank" class="product-link">
+                <div class="product-content">
+                    <div class="product-title">
+                        <h2><div class="brand-tag">Powerlab</div>HD Camera Protector - iPhone 16+</h2>
+                    </div>
+                    <div class="product-row">
+                        <div class="product-left">
+                            <img src="30325VRP_product.jpg" alt="Powerlab Camera Protector" class="product-image">
+                        </div>
+                        <div class="product-details">
+                            <div class="features">
+                                <h4>Key Features:</h4>
+                                <ul>
+                                    <li>HD glass camera lens protection</li>
+                                    <li>Protects from drops and scratches</li>
+                                    <li>Fingerprint and smudge resistant</li>
+                                    <li>Black aluminum finish</li>
+                                    <li>Perfect fit for iPhone 16+</li>
+                                    <li>Easy installation</li>
+                                </ul>
+                            </div>
+                            <div class="product-right">
+                                <div class="price">$3.80</div>
+                                <div class="warranty">Limited Lifetime Warranty</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        <div class="product-item">
+            <a href="https://metro.b2b.scp4me.com/index.php/pureboom-wrap-n-go-bike-mount-speakers-black-audio-66498pg.html" target="_blank" class="product-link">
+                <div class="product-content">
+                    <div class="product-title">
+                        <h2><div class="brand-tag">PureGear</div>PureBoom Wrap-N-Go Wireless Speaker</h2>
+                    </div>
+                    <div class="product-row">
+                        <div class="product-left">
+                            <img src="66498PGMC.jpg" alt="PureBoom Wrap-N-Go Speaker" class="product-image">
+                        </div>
+                        <div class="product-details">
+                            <div class="features">
+                                <h4>Key Features:</h4>
+                                <ul>
+                                    <li>Ultra-portable design wraps around bikes, golf carts, backpacks</li>
+                                    <li>Up to 5 hours playtime at full volume</li>
+                                    <li>IPX5 waterproof rating for rain and splash protection</li>
+                                    <li>Immersive stereo sound in compact form</li>
+                                    <li>Fast recharge - fully powered in just 2 hours</li>
+                                    <li>Connect two speakers for stereo sound</li>
+                                </ul>
+                            </div>
+                            <div class="product-right">
+                                <div class="price">$12.50</div>
+                                <div class="warranty">Lifetime Warranty</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+    
+    <div class="branding">
+        <h2>STAY HUNGRY CTW</h2>
+    </div>
+</body>
+</html>
